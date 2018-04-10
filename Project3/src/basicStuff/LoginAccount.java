@@ -7,12 +7,17 @@ package basicStuff;
 
 /**
  *
- * @author jacksontrahan
+ * @author jacksontrahan Elizabeth Parsons
  */
 public class LoginAccount {
     Person p = null;
     
     public boolean validate(String un, String pw) {
-        return true;
+        if (un != null && pw != null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
