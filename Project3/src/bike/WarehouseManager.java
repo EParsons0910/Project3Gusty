@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * WarehouseManager class contains actions for a warehouse manager employee
  *
- * @author,
+ * 
  */
 public class WarehouseManager extends LoginAccount implements Serializable {
 
