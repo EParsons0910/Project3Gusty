@@ -5,10 +5,38 @@
  */
 package bike;
 
+import basicStuff.bikePart;
+
 /**
  *
- * @author Elizabeth Parsons
+ * @author Jackson Trahan
  */
 public class WareHouseFactory {
+    public Warehouse getWarehouse(String warehouseName) {
+        return new MainWarehouse();
+    }
+}
+
+abstract class Warehouse {
+    public abstract boolean addPart(bikePart bp, int c);
+}
+
+class MainWarehouse extends Warehouse {
+    WarehouseInventory mWhDB;
     
+    @Override
+    public boolean addPart(bikePart bp, int c) {
+        mWhDB.addInventory(bp, c);
+        return true;
+    }
+}
+
+class SalesVanWarehouse extends Warehouse {
+    WarehouseInventory svWhDB;
+    
+    @Override
+    public boolean addPart(bikePart bp, int c) {
+        svWhDB.addInventory(bp, c);
+        return true;
+    }
 }
