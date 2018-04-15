@@ -12,31 +12,18 @@ import basicStuff.bikePart;
  * @author Elizabeth Parsons
  */
 public class SalesAssociate{
-    private bikePart bp;
-    private int count;
+    private String firstName;
+    private String lastName;
+    private String eMail;
+    private String userName;
+    private String passWord;
     
-    
-    SalesAssociate(bikePart bp, int count){
-        this.bp = bp;
-        this.count = count;
-    }
-    
-    public bikePart getBp(){
-        return bp;
-    }
-    
-    public int getCount(){
-        return count;
+    SalesAssociate(String firstName, String lastName, String eMail, String userName, String passWord){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eMail = eMail;
+        this.userName = userName;
+        this.passWord = passWord;
     }
     
-    public void setBp(bikePart bp){
-        this.bp = bp;
-    }
-
-    public void setCount(int count){
-        this.count = count;
-    }
-    public void addPart(bikePart bp, int count){
-     
-    }
 }
