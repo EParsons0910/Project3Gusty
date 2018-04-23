@@ -21,8 +21,6 @@ import static project2.BicycleParts.addPart;
  * @author Jackson Trahan
  */
 public class FXMLDocumentController implements Initializable {
-    
-    private ArrayList<BikePart> warehouse = new ArrayList();
     @FXML
     private TextField input;
     @FXML
