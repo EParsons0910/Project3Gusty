@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="250" prefWidth="650" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project2.FXMLDocumentController">
+    <children>
+        <TextField layoutX="50" layoutY="50" prefWidth="200" fx:id="input" />
+        <GridPane layoutX="50" layoutY="100" hgap="10" vgap="10" prefWidth="200">
+            <Button GridPane.columnIndex="0" GridPane.rowIndex="0" text="Load File" prefWidth="100" onAction="#read" fx:id="loadButton" />
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="0" text="Enter Part" prefWidth="100" onAction="#enter" fx:id="enterButton" />
+            <Button GridPane.columnIndex="0" GridPane.rowIndex="1" text="Sell Part" prefWidth="100" onAction="#sell" fx:id="sellButton" />
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="1" text="Display" prefWidth="100" onAction="#display" fx:id="displayButton" />
+            <Button GridPane.columnIndex="0" GridPane.rowIndex="2" text="Sort Name" prefWidth="100" onAction="#sortName" fx:id="sortNameButton" />
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Sort Num" prefWidth="100" onAction="#sortNum" fx:id="sortNumberButton" />
+        </GridPane>
+        <TextArea layoutX="300" layoutY="50" prefHeight="150" prefWidth="300" editable="False" fx:id="output" />
+    </children>
+</AnchorPane>
