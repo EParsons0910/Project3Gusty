@@ -4,14 +4,14 @@ import basicStuff.LoginAccount;
 
 /**
  *
- * @author Elizabeth Parsons
+ * @author Elizabeth Parsons, Jackson Trahan
  */
 public class SalesAssociate extends LoginAccount {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String username;
-    private String password;
+    String firstName;
+    String lastName;
+    String email;
+    String username;
+    String password;
     
     SalesAssociate(String fn, String ln, String em, String un, String pw){
         this.firstName = fn;
