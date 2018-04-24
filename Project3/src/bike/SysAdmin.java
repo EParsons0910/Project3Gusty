@@ -1,3 +1,4 @@
+
 package bike;
 
 import basicStuff.LoginAccount;
@@ -60,11 +61,19 @@ public class SysAdmin extends LoginAccount {
         fw.append(s);
         fw.close();
     }
-    public void addWHMan(String firstName, String lastName, String eMail){
-        
+    public void addWHMan(String firstName, String lastName, String eMail, String un, String pw) throws Exception{
+        users.add(new WarehouseManager(firstName, lastName, eMail, un, pw));
+        FileWriter fw = new FileWriter("users.txt", true);
+        String s = "\nWarehouse Manager, " + firstName + ", " + lastName + ", " + eMail + ", " + un + ", " + pw;
+        fw.append(s);
+        fw.close();
     }
     
-    public void addSalesAssociate(String firstName, String lastName, String eMail){
-        
+    public void addSalesAssociate(String firstName, String lastName, String eMail, String userName, String passWord) throws Exception{
+        users.add(new SalesAssociate(firstName, lastName, eMail, userName, passWord));
+        FileWriter fw = new FileWriter("users.txt", true);
+        String s = "\nSales Associate, " + firstName + ", " + lastName + ", " + eMail + ", " + userName + ", " + passWord;
+        fw.append(s);
+        fw.close();
     }
 }
