@@ -14,10 +14,10 @@ public class SalesAssociate extends LoginAccount {
     String password;
     
     SalesAssociate(String fn, String ln, String em, String un, String pw){
-        this.firstName = fn;
-        this.lastName = ln;
-        this.email = em;
-        this.username = un;
-        this.password = pw;
+        firstName = fn;
+        lastName = ln;
+        email = em;
+        username = un;
+        password = pw;
     }
 }
