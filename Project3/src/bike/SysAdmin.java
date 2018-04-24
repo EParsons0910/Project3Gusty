@@ -2,6 +2,7 @@ package bike;
 
 import basicStuff.LoginAccount;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class SysAdmin extends LoginAccount {
     String password;
     ArrayList<LoginAccount> users = new ArrayList<>();
     
-    public SysAdmin(String fn, String ln, String em, String un, String pw) {
+    public SysAdmin(String fn, String ln, String em, String un, String pw) throws Exception {
         firstName = fn;
         lastName = ln;
         email = em;
@@ -38,13 +39,13 @@ public class SysAdmin extends LoginAccount {
             String[] data = scnr.nextLine().split(", ");
             switch (data[2].toLowerCase()) {
                 case "office manager":
-                    users.add(new OfficeMan(data[1], data[2], data[3], data[4], data[5]));
+                    users.add(new OfficeMan(data[4], data[5], data[3], data[1], data[2]));
                     break;
                 case "sales associate":
-                    users.add(new SalesAssociate(data[1], data[2], data[3], data[4], data[5]));
+                    users.add(new SalesAssociate(data[4], data[5], data[3], data[1], data[2]));
                     break;
                 case "warehouse manager":
-                    users.add(new WarehouseManager(data[1], data[2], data[3], data[4], data[5]));
+                    users.add(new WarehouseManager(data[4], data[5], data[3], data[1], data[2]));
                     break;
             }
         }
@@ -52,14 +53,12 @@ public class SysAdmin extends LoginAccount {
     }
     
     
-    public void addOfficeMan(String firstName, String lastName, String eMail){
-        Scanner scnr = new Scanner(System.in);
-        File file = new File("users.txt");
-        if (!file.equals(firstName) && !file.equals(lastName) && !file.equals(eMail)){
-            
-        }
-        
-        
+    public void addOfficeMan(String fn, String ln, String em, String un, String pw) throws Exception {
+        users.add(new OfficeMan(fn, ln, em, un, pw));
+        FileWriter fw = new FileWriter("users.txt", true);
+        String s = "\nOffice Manager, " + fn + ", " + ln + ", " + em + ", " + un + ", " + pw;
+        fw.append(s);
+        fw.close();
     }
     public void addWHMan(String firstName, String lastName, String eMail){
         
