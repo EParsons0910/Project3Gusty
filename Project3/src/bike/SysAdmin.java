@@ -3,9 +3,12 @@ package bike;
 
 import basicStuff.LoginAccount;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -75,5 +78,13 @@ public class SysAdmin extends LoginAccount {
         String s = "\nSales Associate, " + firstName + ", " + lastName + ", " + eMail + ", " + userName + ", " + passWord;
         fw.append(s);
         fw.close();
+    }
+    
+    public void addSalesVan() throws FileNotFoundException, UnsupportedEncodingException{
+        System.out.println("Enter in a Sales Van name");
+        Scanner scnr = new Scanner(System.in);
+        String SalesVanName = scnr.nextLine();
+        PrintWriter writer = new PrintWriter(SalesVanName, "UTF-8");
+        writer.close();
     }
 }
