@@ -1,5 +1,7 @@
 package basicStuff;
 
+import bike.OfficeMan;
+import bike.SysAdmin;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,6 +37,7 @@ public class SignInFXMLController implements Initializable {
                     Parent root = null;
                     switch (signIn[0].toLowerCase()) {
                         case "office manager":
+                            OfficeMan om = new OfficeMan(signIn[4], signIn[5], signIn[3], signIn[1], signIn[2]);
                             root = FXMLLoader.load(getClass().getResource("OfficeManager.fxml"));
                             break;
                         case "warehouse manager":
@@ -44,7 +47,8 @@ public class SignInFXMLController implements Initializable {
                             root = FXMLLoader.load(getClass().getResource("SalesAssociate.fxml"));
                             break;
                         case "system admin":
-                            root = FXMLLoader.load(getClass().getResource("SystemAdmin.fxml"));
+                            SysAdmin sa = new SysAdmin(signIn[4], signIn[5], signIn[3], signIn[1], signIn[2]);
+                            root = FXMLLoader.load(getClass().getResource("OfficeManager.fxml"));
                             break;
                     }
                     Scene scene = new Scene(root);
@@ -52,7 +56,7 @@ public class SignInFXMLController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 } else {
-                    System.out.println("Error: Sign in invalid");
+                    System.out.println("ERROR: Sign in invalid");
                 }
             }
         }
