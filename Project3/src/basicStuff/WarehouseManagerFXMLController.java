@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -20,6 +21,20 @@ import javafx.scene.control.TextField;
  * @author Elizabeth Parsons
  */
 public class WarehouseManagerFXMLController implements Initializable {
+    
+    @FXML
+    private TextField input;
+
+    @FXML
+    private Button nameSearchButton;
+
+    @FXML
+    private Button numSearchButton;
+
+    @FXML
+    private TextArea output;
+    
+    
     @FXML
     private void nameSearch(ActionEvent event) {
         
