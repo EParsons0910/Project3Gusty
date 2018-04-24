@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
  * @author Jackson Trahan
  */
 public class WareHouseFactory {
-    public Warehouse getWarehouse(String warehouseName, WarehouseTypes type) {
+    public static Warehouse getWarehouse(String warehouseName, WarehouseTypes type) {
         if (type == WarehouseTypes.MAIN_WH) {
             return new MainWarehouse(warehouseName);
         } else {
