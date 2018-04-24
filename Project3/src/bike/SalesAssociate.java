@@ -58,4 +58,21 @@ public class SalesAssociate extends LoginAccount {
         }
         
     }
+    public void sellParts(int partNum, String salesVanName) throws FileNotFoundException{
+        System.out.println("Enter in the salesVan");
+        Scanner scnr = new Scanner(System.in);
+        salesVanName = scnr.nextLine();
+        System.out.println("Loading Sales Van...");
+        File file = new File(salesVanName);
+        if(!file.exists()){
+            System.out.println("File not found!");
+        }
+        else{
+            System.out.println("Enter in the part number: ");
+            partNum = scnr.nextInt();
+            /*for(){
+            TODO: Search for partNum within salesVanName 
+            }*/
+        }
+    }
 }
