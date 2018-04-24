@@ -3,12 +3,9 @@ package bike;
 
 import basicStuff.LoginAccount;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -56,7 +53,6 @@ public class SysAdmin extends LoginAccount {
         scnr.close();
     }
     
-    
     public void addOfficeMan(String fn, String ln, String em, String un, String pw) throws Exception {
         users.add(new OfficeMan(fn, ln, em, un, pw));
         FileWriter fw = new FileWriter("users.txt", true);
@@ -64,27 +60,22 @@ public class SysAdmin extends LoginAccount {
         fw.append(s);
         fw.close();
     }
-    public void addWHMan(String firstName, String lastName, String eMail, String un, String pw) throws Exception{
-        users.add(new WarehouseManager(firstName, lastName, eMail, un, pw));
+    
+    public void addWHMan(String fn, String ln, String em, String un, String pw) throws Exception {
+        users.add(new WarehouseManager(fn, ln, em, un, pw));
         FileWriter fw = new FileWriter("users.txt", true);
-        String s = "\nWarehouse Manager, " + firstName + ", " + lastName + ", " + eMail + ", " + un + ", " + pw;
+        String s = "\nWarehouse Manager, " + fn + ", " + ln + ", " + em + ", " + un + ", " + pw;
         fw.append(s);
         fw.close();
     }
     
-    public void addSalesAssociate(String firstName, String lastName, String eMail, String userName, String passWord) throws Exception{
-        users.add(new SalesAssociate(firstName, lastName, eMail, userName, passWord));
+    public void addSalesAssociate(String fn, String ln, String em, String un, String pw) throws Exception {
+        users.add(new SalesAssociate(fn, ln, em, un, pw));
         FileWriter fw = new FileWriter("users.txt", true);
-        String s = "\nSales Associate, " + firstName + ", " + lastName + ", " + eMail + ", " + userName + ", " + passWord;
+        String s = "\nSales Associate, " + fn + ", " + ln + ", " + em + ", " + un + ", " + pw;
         fw.append(s);
         fw.close();
     }
     
-    public void addSalesVan() throws FileNotFoundException, UnsupportedEncodingException{
-        System.out.println("Enter in a Sales Van name");
-        Scanner scnr = new Scanner(System.in);
-        String SalesVanName = scnr.nextLine();
-        PrintWriter writer = new PrintWriter(SalesVanName, "UTF-8");
-        writer.close();
-    }
+    public void addSalesVan(String name, SalesAssociate sa) throws Exception {sa.addWarehouse(name);}
 }
