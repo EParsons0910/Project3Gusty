@@ -9,46 +9,46 @@ package bike;
  *
  * @author Elizabeth Parsons
  */
+import basicStuff.LoginAccount;
+import basicStuff.Person;
+import java.io.File;
 import java.util.Scanner;
 import java.io.Serializable;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 
-public class SysAdmin {
-    private String fn;
-    private String ln;
-    private String em;
-    private String un;
-    private String pw;
-    
-    SysAdmin(String fn, String ln, String em, String un, String pw){
-        this.fn = fn;
-        this.ln = ln;
-        this.em = em;
-        this.un = un;
-        this.pw = pw;
-                
-    }
-    
-    public String getFirstName(){
-        return fn;
-    }
-    
-    public String getLastName(){
-        return ln;
-    }
-    
-    public String getEMail(){
-        return em;
-    }
-    
-    public String getUserName(){
-        return un;
-    }
-    
-    public String getPassWord(){
-        return pw;
-    }
+public class SysAdmin extends LoginAccount{
 
-    public void addOfficeMan(){
+    public static ArrayList<LoginAccount>users = new ArrayList<>();
+    public void write(){
+    Scanner scnr = new Scanner("users.txt");
+    while(scnr.hasNextLine()){
+        users.add(scnr.nextLine());
+    }
+    scnr.close();
+}
+    
+    public SysAdmin(Person person, String userName, String passWord) {
+        super(person, userName, passWord);
+    }
+    
+    
+    public void addOfficeMan(String firstName, String lastName, String eMail){
+        Scanner scnr = new Scanner(System.in);
+        File file = new File("users.txt");
+        if (!file.equals(firstName) && !file.equals(lastName) && !file.equals(eMail)){
+            
+        }
+        
+        
+    }
+    public void addWHMan(String firstName, String lastName, String eMail){
+        
+    }
+    
+    public void addSalesAssociate(String firstName, String lastName, String eMail){
         
     }
 }
