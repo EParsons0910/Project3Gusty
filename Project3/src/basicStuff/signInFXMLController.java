@@ -30,15 +30,21 @@ public class SignInFXMLController implements Initializable {
         Scanner in = new Scanner(new File("users.txt"));
         while (in.hasNextLine()) {
             String[] signIn = in.nextLine().split(", ");
-            if (signIn[0].equals(username.getText())) {
-                if (signIn[1].equals(password.getText())) {
+            if (signIn[1].equals(username.getText())) {
+                if (signIn[2].equals(password.getText())) {
                     Parent root = null;
-                    switch (signIn[2].toLowerCase()) {
+                    switch (signIn[0].toLowerCase()) {
                         case "office manager":
                             root = FXMLLoader.load(getClass().getResource("OfficeManager.fxml"));
                             break;
                         case "warehouse manager":
                             root = FXMLLoader.load(getClass().getResource("WarehouseManager.fxml"));
+                            break;
+                        case "sales associate":
+                            root = FXMLLoader.load(getClass().getResource("SalesAssociate.fxml"));
+                            break;
+                        case "system admin":
+                            root = FXMLLoader.load(getClass().getResource("SystemAdmin.fxml"));
                             break;
                     }
                     Scene scene = new Scene(root);
