@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bike;
 
-/**
- *
- * @author Elizabeth Parsons
- */
 import basicStuff.LoginAccount;
 import basicStuff.Person;
 import java.io.File;
@@ -19,16 +10,26 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Elizabeth Parsons
+ */
 public class SysAdmin extends LoginAccount{
 
-    public static ArrayList<LoginAccount>users = new ArrayList<>();
-    public void write(){
-    Scanner scnr = new Scanner("users.txt");
-    while(scnr.hasNextLine()){
-        users.add(scnr.nextLine());
+    public static ArrayList<LoginAccount> users = new ArrayList<>();
+    
+    public void write() throws Exception {
+        Scanner scnr = new Scanner(new File("users.txt"));
+        while(scnr.hasNextLine()){
+            String[] data = scnr.nextLine().split(", ");
+            switch (data[2].toLowerCase()) {
+                case "office manager":
+                    users.add(new OfficeMan(data[1], data[2], data[3], data[4], data[5]));
+                    break;
+            }
+        }
+        scnr.close();
     }
-    scnr.close();
-}
     
     public SysAdmin(Person person, String userName, String passWord) {
         super(person, userName, passWord);
