@@ -1,6 +1,7 @@
 package bike;
 
 import basicStuff.LoginAccount;
+import bike.WareHouseFactory;
 
 /**
  *
@@ -12,6 +13,7 @@ public class SalesAssociate extends LoginAccount {
     String email;
     String username;
     String password;
+    Warehouse warehouse;
     
     public SalesAssociate(String fn, String ln, String em, String un, String pw){
         firstName = fn;
@@ -19,5 +21,9 @@ public class SalesAssociate extends LoginAccount {
         email = em;
         username = un;
         password = pw;
+    }
+    
+    public void addWarehouse(String name) {
+        warehouse = WareHouseFactory.getWarehouse(name, WarehouseTypes.SALESVAN_WH);
     }
 }
