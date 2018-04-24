@@ -1,29 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bike;
 
-import basicStuff.bikePart;
+import basicStuff.LoginAccount;
 
 /**
  *
  * @author Elizabeth Parsons
  */
-public class SalesAssociate{
+public class SalesAssociate extends LoginAccount {
     private String firstName;
     private String lastName;
-    private String eMail;
-    private String userName;
-    private String passWord;
+    private String email;
+    private String username;
+    private String password;
     
-    SalesAssociate(String firstName, String lastName, String eMail, String userName, String passWord){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.eMail = eMail;
-        this.userName = userName;
-        this.passWord = passWord;
+    SalesAssociate(String fn, String ln, String em, String un, String pw){
+        this.firstName = fn;
+        this.lastName = ln;
+        this.email = em;
+        this.username = un;
+        this.password = pw;
     }
-    
 }
