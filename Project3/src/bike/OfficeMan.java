@@ -13,6 +13,18 @@ public class OfficeMan extends LoginAccount {
     String username;
     String password;
     
+    private AccountType accountType;
+    
+    public OfficeManager(Person p, String aUserName, String aPassword) {
+        super(p, aUserName, aPassword);
+        accountType = AccountType.OFFICE_MANAGER;
+    }
+    
+    @Override
+    public AccountType getType() {
+        return accountType;
+    }
+    
     public OfficeMan(String fn, String ln, String em, String un, String pw){
         firstName = fn;
         lastName = ln;
