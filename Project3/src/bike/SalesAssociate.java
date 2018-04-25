@@ -6,11 +6,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import bike.WarehouseInventory;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import static javax.print.attribute.Size2DSyntax.MM;
 
 /**
  *
@@ -143,5 +145,25 @@ public class SalesAssociate extends LoginAccount {
             
             }
         }
-  
+    public SalesInvoice generateSalesInvoice(bikePart bp, int quantity) throws ParseException{
+        System.out.println("Enter in Sales Associate name.");
+        Scanner scnr = new Scanner(System.in);
+        String salesAssociate = scnr.nextLine();
+        
+        SimpleDateFormat newFormat = new SimpleDateFormat("mm/dd/yyyy");
+        
+        System.out.println("Enter in Date of Sale(mm/dd/yyyy).");
+        String userdate = scnr.nextLine();
+        Date date = newFormat.parse(userdate);
+        
+        
+        System.out.println("Enter in Customer Name.");
+        String customer = scnr.nextLine();
+        
+        System.out.println("Enter in Employee who received parts.");
+        String employee = scnr.nextLine();
+        //TODO: ADD ability to calculate totalCost
+        SalesInvoice salesInvoice= new SalesInvoice(date, bp, employee, salesAssociate, totalCost, customer);
+        return salesInvoice;
+    }
 }
