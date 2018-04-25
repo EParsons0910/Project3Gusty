@@ -1,11 +1,16 @@
 package bike;
 
 import basicStuff.LoginAccount;
-import bike.WareHouseFactory;
+import basicStuff.bikePart;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import bike.WarehouseInventory;
+import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -26,7 +31,7 @@ public class SalesAssociate extends LoginAccount {
         username = un;
         password = pw;
     }
-    
+        public static List<WarehousePart>SalesVan = new ArrayList<>();
     public void addWarehouse(String name) {
         warehouse = WareHouseFactory.getWarehouse(name, WarehouseTypes.SALESVAN_WH);
     }
@@ -54,25 +59,89 @@ public class SalesAssociate extends LoginAccount {
                     String s = sc.nextLine();
                     print.write(s);
                 }
+                print.close();
+                sc.close();
             }
         }
         
     }
-    public void sellParts(int partNum, String salesVanName) throws FileNotFoundException{
-        System.out.println("Enter in the salesVan");
-        Scanner scnr = new Scanner(System.in);
-        salesVanName = scnr.nextLine();
-        System.out.println("Loading Sales Van...");
-        File file = new File(salesVanName);
-        if(!file.exists()){
-            System.out.println("File not found!");
+    private WarehousePart findInventory(bikePart bp){
+        for(WarehousePart i : SalesVan){
+            if (i.getBp().equals(bp))
+                return i;
+            
         }
-        else{
-            System.out.println("Enter in the part number: ");
-            partNum = scnr.nextInt();
-            /*for(){
-            TODO: Search for partNum within salesVanName 
-            }*/
+        return null;
+    }
+    
+    private void updateInventory(WarehousePart i, bikePart b, int quantity){
+        i.getBp().setPrice(b.getPrice());
+        i.getBp().setSalesPrice(b.getSalesPrice());
+        i.getBp().setOnSale(b.getOnSale());
+        i.setCount(i.getCount() + quantity);
+    }
+    
+    public void addInventory(bikePart bp, int quantity){
+        WarehousePart i = findInventory(bp);
+        if (i != null)
+            updateInventory(i, bp, quantity);
+        else
+            SalesVan.add(new WarehousePart(bp, quantity));
+    }
+    public void updateWareHouseDB(String fileName) throws FileNotFoundException{
+        File file = new File(fileName);
+        Scanner read = new Scanner(file);
+        while (read.hasNextLine()) {
+            String line = read.nextLine();
+            String regExp = "\\s*(\\s|,)\\s*";
+            String[] bci = line.split(regExp);
+            bikePart bc;
+            bc = new bikePart(bci[0],Integer.parseInt(bci[1]),Double.parseDouble(bci[2]),Double.parseDouble(bci[3]), bci[4].equals("true"), Integer.parseInt(bci[5]));
+            int quantity = Integer.parseInt(bci[5]);
+            addInventory(bc, quantity);
+
         }
     }
+    
+    public WarehousePart sellParts(int partNum){
+        WarehousePart f = null;
+        for(WarehousePart i: SalesVan){
+            if(i.getBp().getNumber() == partNum){
+                f = i;
+                break;
+            }
+        }
+        if (f != null)
+            updateInventory(f,f.getBp(), -1);
+        return f;
+    }
+    public WarehousePart findPartByName(String partName){
+        for(WarehousePart i : SalesVan){
+            if(i.getBp().getName().equals(partName))
+                return i;
+            }
+        return null;
+        }
+    public List<WarehousePart> getInventory(){
+        return SalesVan;
+    }
+    public void saveWarehouse(String filename){
+        try{
+            PrintWriter writer = new PrintWriter(filename, "UTF-8");
+            for(WarehousePart i : SalesVan){
+                writer.println(i.getBp().getName() + ","
+                + i.getBp().getNumber() + ","
+                + i.getBp().getPrice() + ","
+                + i.getBp().getSalesPrice() + ","
+                + i.getBp().getOnSale() + ","
+                + i.getCount());
+                writer.close();
+            }
+        }catch(IOException e){
+            System.out.println("file error!");
+            e.printStackTrace();
+            
+            }
+        }
+  
 }
