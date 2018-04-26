@@ -1,7 +1,7 @@
 package bike;
 
+import basicStuff.BikePart;
 import basicStuff.LoginAccount;
-import basicStuff.bikePart;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import static javax.print.attribute.Size2DSyntax.MM;
 
 /**
  *
@@ -22,8 +21,6 @@ public class SalesAssociate extends LoginAccount {
     String firstName;
     String lastName;
     String email;
-    String username;
-    String password;
     Warehouse warehouse;
     
     public SalesAssociate(String fn, String ln, String em, String un, String pw){
@@ -35,7 +32,7 @@ public class SalesAssociate extends LoginAccount {
     }
         public static List<WarehousePart>SalesVan = new ArrayList<>();
     public void addWarehouse(String name) {
-        warehouse = WareHouseFactory.getWarehouse(name, WarehouseTypes.SALESVAN_WH);
+        warehouse = WarehouseFactory.getWarehouse(this);
     }
     
     public void loadSalesVan(String salesVanName, String transferFileName) throws FileNotFoundException{
@@ -67,7 +64,7 @@ public class SalesAssociate extends LoginAccount {
         }
         
     }
-    private WarehousePart findInventory(bikePart bp){
+    private WarehousePart findInventory(BikePart bp){
         for(WarehousePart i : SalesVan){
             if (i.getBp().equals(bp))
                 return i;
@@ -76,14 +73,14 @@ public class SalesAssociate extends LoginAccount {
         return null;
     }
     
-    private void updateInventory(WarehousePart i, bikePart b, int quantity){
+    private void updateInventory(WarehousePart i, BikePart b, int quantity){
         i.getBp().setPrice(b.getPrice());
         i.getBp().setSalesPrice(b.getSalesPrice());
         i.getBp().setOnSale(b.getOnSale());
         i.setCount(i.getCount() + quantity);
     }
     
-    public void addInventory(bikePart bp, int quantity){
+    public void addInventory(BikePart bp, int quantity){
         WarehousePart i = findInventory(bp);
         if (i != null)
             updateInventory(i, bp, quantity);
@@ -97,8 +94,8 @@ public class SalesAssociate extends LoginAccount {
             String line = read.nextLine();
             String regExp = "\\s*(\\s|,)\\s*";
             String[] bci = line.split(regExp);
-            bikePart bc;
-            bc = new bikePart(bci[0],Integer.parseInt(bci[1]),Double.parseDouble(bci[2]),Double.parseDouble(bci[3]), bci[4].equals("true"), Integer.parseInt(bci[5]));
+            BikePart bc;
+            bc = new BikePart(bci[0],Integer.parseInt(bci[1]),Double.parseDouble(bci[2]),Double.parseDouble(bci[3]), bci[4].equals("true"), Integer.parseInt(bci[5]));
             int quantity = Integer.parseInt(bci[5]);
             addInventory(bc, quantity);
 
@@ -145,7 +142,7 @@ public class SalesAssociate extends LoginAccount {
             
             }
         }
-    public SalesInvoice generateSalesInvoice(bikePart bp, int quantity) throws ParseException{
+    public SalesInvoice generateSalesInvoice(BikePart bp, int quantity) throws ParseException{
         System.out.println("Enter in Sales Associate name.");
         Scanner scnr = new Scanner(System.in);
         String salesAssociate = scnr.nextLine();

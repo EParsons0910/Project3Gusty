@@ -10,17 +10,17 @@ package bike;
  * @author Elizabeth Parsons
  */
 import java.util.Date;
-import basicStuff.bikePart;
+import basicStuff.BikePart;
 
 public class SalesInvoice {
     private Date dateOfSale;
-    private bikePart bp;
+    private BikePart bp;
     private String empReceived;
     private String salesAssociate;
     private double totalCost;
     private final String customer;
     
-    SalesInvoice(Date dateOfSale, String customer, bikePart bp, String empReceived, String salesAssociate, double totalCost){
+    SalesInvoice(Date dateOfSale, String customer, BikePart bp, String empReceived, String salesAssociate, double totalCost){
         this.bp = bp;
         this.dateOfSale = dateOfSale;
         this.customer = customer;
@@ -38,7 +38,7 @@ public class SalesInvoice {
         return customer;
     }
     
-    public bikePart getBikePart(){
+    public BikePart getBikePart(){
         return bp;
     }
     

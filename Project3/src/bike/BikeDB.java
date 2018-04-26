@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class BikeDB {
     static BikeDB bikeDB = null;
-    WareHouseFactory whf;
+    WarehouseFactory whf;
     ArrayList<LoginAccount> users;
     LoginAccount currentUser;
     
@@ -29,16 +29,16 @@ public class BikeDB {
             Warehouse wh = null;
             switch (signIn[0].toLowerCase()) {
                 case "office manager":
-                    account = new OfficeMan(signIn[4], signIn[5], signIn[3], signIn[1], signIn[2]);
+                    account = new OfficeMan(signIn[1], signIn[2], signIn[3], signIn[4], signIn[5]);
                     break;
                 case "warehouse manager":
-                    account = new WarehouseManager(signIn[4], signIn[5], signIn[3], signIn[1], signIn[2]);
+                    account = new WarehouseManager(signIn[1], signIn[2], signIn[3], signIn[4], signIn[5]);
                     break;
                 case "sales associate":
-                    account = new SalesAssociate(signIn[4], signIn[5], signIn[3], signIn[1], signIn[2]);
+                    account = new SalesAssociate(signIn[1], signIn[2], signIn[3], signIn[4], signIn[5]);
                     break;
                 case "system admin":
-                    account = new SysAdmin(signIn[4], signIn[5], signIn[3], signIn[1], signIn[2]);
+                    account = new SysAdmin(signIn[1], signIn[2], signIn[3], signIn[4], signIn[5]);
                     break;
             }
             users.add(account);

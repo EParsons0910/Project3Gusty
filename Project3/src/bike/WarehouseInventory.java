@@ -1,6 +1,6 @@
 package bike;
 
-import basicStuff.bikePart;
+import basicStuff.BikePart;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class WarehouseInventory implements Iterable {
         warehouseDB = new ArrayList<WarehousePart>();
     }
     
-    private WarehousePart findInventory(bikePart bp){
+    private WarehousePart findInventory(BikePart bp){
         for(WarehousePart i : warehouseDB){
             if (i.getBp().equals(bp))
                 return i;
@@ -30,14 +30,14 @@ public class WarehouseInventory implements Iterable {
         return null;
     }
     
-    private void updateInventory(WarehousePart i, bikePart b, int quantity){
+    private void updateInventory(WarehousePart i, BikePart b, int quantity){
         i.getBp().setPrice(b.getPrice());
         i.getBp().setSalesPrice(b.getSalesPrice());
         i.getBp().setOnSale(b.getOnSale());
         i.setCount(i.getCount() + quantity);
     }
     
-    public void addInventory(bikePart bp, int quantity){
+    public void addInventory(BikePart bp, int quantity){
         WarehousePart i = findInventory(bp);
         if (i != null)
             updateInventory(i, bp, quantity);
@@ -51,8 +51,8 @@ public class WarehouseInventory implements Iterable {
             String line = read.nextLine();
             String regExp = "\\s*(\\s|,)\\s*";
             String[] bci = line.split(regExp);
-            bikePart bc;
-            bc = new bikePart(bci[0],Integer.parseInt(bci[1]),Double.parseDouble(bci[2]),Double.parseDouble(bci[3]), bci[4].equals("true"), Integer.parseInt(bci[5]));
+            BikePart bc;
+            bc = new BikePart(bci[0],Integer.parseInt(bci[1]),Double.parseDouble(bci[2]),Double.parseDouble(bci[3]), bci[4].equals("true"), Integer.parseInt(bci[5]));
             int quantity = Integer.parseInt(bci[5]);
             addInventory(bc, quantity);
 

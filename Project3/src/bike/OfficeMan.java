@@ -22,8 +22,8 @@ public class OfficeMan extends LoginAccount {
     
     public WarehousePart[] getPartsByName(String name) {
         ArrayList<WarehousePart> parts = new ArrayList();
-        Warehouse wh = WareHouseFactory.getWarehouse(this);
-        for (WarehousePart whp : WareHouseFactory.getWarehouse(this).whDb.getInventory()) {
+        Warehouse wh = WarehouseFactory.getWarehouse(this);
+        for (WarehousePart whp : WarehouseFactory.getWarehouse(this).whDb.getInventory()) {
             if (whp.getBp().getName().startsWith(name)) {
                 parts.add(whp);
             }
@@ -33,8 +33,8 @@ public class OfficeMan extends LoginAccount {
     
     public WarehousePart[] getPartsByNum(String num) {
         ArrayList<WarehousePart> parts = new ArrayList();
-        Warehouse wh = WareHouseFactory.getWarehouse(this);
-        for (WarehousePart whp : WareHouseFactory.getWarehouse(this).whDb.getInventory()) {
+        Warehouse wh = WarehouseFactory.getWarehouse(this);
+        for (WarehousePart whp : WarehouseFactory.getWarehouse(this).whDb.getInventory()) {
             if (String.valueOf(whp.getBp().getNumber()).startsWith(num)) {
                 parts.add(whp);
             }
