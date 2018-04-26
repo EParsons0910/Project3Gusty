@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bike;
 
-import basicStuff.bikePart;
+import basicStuff.BikePart;
 import java.util.Comparator;
 
 /**
@@ -13,7 +8,7 @@ import java.util.Comparator;
  * @author Elizabeth Parsons
  */
 public class WarehousePart {
-    private bikePart bp;
+    private BikePart bp;
     private int count;
     
     public static Comparator<WarehousePart>SORT_BY_NAME = new Comparator<WarehousePart>() {
@@ -28,12 +23,12 @@ public class WarehousePart {
     public static Comparator<WarehousePart>SORT_BY_NUMBER = (WarehousePart o1, WarehousePart o2) -> (Integer.compare(o1.getBp().getNumber(), o2.getBp().getNumber()));
     
     
-    WarehousePart(bikePart bp, int count){
+    WarehousePart(BikePart bp, int count){
         this.bp = bp;
         this.count = count;
     }
     
-    public bikePart getBp(){
+    public BikePart getBp(){
         return bp;
     }
     
@@ -41,7 +36,7 @@ public class WarehousePart {
         return count;
     }
     
-    public void setBp(bikePart bp){
+    public void setBp(BikePart bp){
         this.bp = bp;
     }
     
