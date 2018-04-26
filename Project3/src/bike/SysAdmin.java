@@ -15,27 +15,25 @@ public class SysAdmin extends LoginAccount {
     String firstName;
     String lastName;
     String email;
-    String username;
-    String password;
+    
     ArrayList<LoginAccount> users = new ArrayList<>();
     
-    public SysAdmin(String fn, String ln, String em, String un, String pw) throws Exception {
+    public SysAdmin(String fn, String ln, String em, String un, String pw) {
         firstName = fn;
         lastName = ln;
         email = em;
         username = un;
         password = pw;
-        
-        try {
-            getUsers();
-        } catch (Exception e) {
-            System.out.println("ERROR: Couldnt open \"users.txt\"");
-            users = new ArrayList();
-        }
+        getUsers();
     }
     
-    public void getUsers() throws Exception {
-        Scanner scnr = new Scanner(new File("users.txt"));
+    public void getUsers() {
+        Scanner scnr = null;
+        
+        try {
+            scnr = new Scanner(new File("users.txt"));
+        } catch (Exception e) {e.printStackTrace();}
+        
         while(scnr.hasNextLine()){
             String[] data = scnr.nextLine().split(", ");
             switch (data[2].toLowerCase()) {
@@ -76,6 +74,4 @@ public class SysAdmin extends LoginAccount {
         fw.append(s);
         fw.close();
     }
-    
-    public void addSalesVan(String name, SalesAssociate sa) throws Exception {sa.addWarehouse(name);}
 }
