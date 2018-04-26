@@ -78,4 +78,15 @@ public class bikePart {
    public void setQuantity(int quantity){
        this.quantity = quantity;
    }
+   
+   public double totalPriceCalc(double price, double salesPrice, boolean onSale, int quantity){
+       if(onSale==true){
+           double totalPrice = salesPrice * quantity;
+           return totalPrice;
+       }
+       else{
+           double totalPrice = price * quantity;
+           return totalPrice;
+       }
+   }
 }
