@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basicStuff;
 
 /**
  *
  * @author Elizabeth Parsons
  */
-public class bikePart {
+public class BikePart {
    private String name;
    private int number;
    private double price;
@@ -23,7 +18,7 @@ public class bikePart {
       @param onSale indicates whether the part is on sale
    */
    
-   public bikePart(String name, int number, double price, double salesPrice, boolean onSale, int quantity){
+   public BikePart(String name, int number, double price, double salesPrice, boolean onSale, int quantity){
       this.name = name;
       this.number = number;
       this.price = price;
