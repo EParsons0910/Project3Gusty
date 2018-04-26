@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bike;
 
 import basicStuff.LoginAccount;
-import basicStuff.bikePart;
+import basicStuff.BikePart;
 import java.io.FileNotFoundException;
 
 /**
@@ -30,7 +25,7 @@ abstract class Warehouse {
     String filename;
     public WarehouseInventory whDb;
     
-    public void addPart(bikePart bp, int c) {
+    public void addPart(BikePart bp, int c) {
         whDb.addInventory(bp, c);
         whDb.saveWarehouse(filename);
     }
