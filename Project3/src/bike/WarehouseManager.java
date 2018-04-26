@@ -10,8 +10,6 @@ public class WarehouseManager extends LoginAccount {
     String firstName;
     String lastName;
     String email;
-    String username;
-    String password;
     
     public WarehouseManager(String fn, String ln, String em, String un, String pw) {
         firstName = fn;
