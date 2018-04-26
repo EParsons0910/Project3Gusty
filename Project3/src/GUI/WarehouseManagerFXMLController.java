@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -72,6 +74,22 @@ public class WarehouseManagerFXMLController {
         stage.show();
     }
     
+     @FXML
+    void checkFile(ActionEvent event) {
+        clearAdded(updatePartPane);
+        transferEnter = new TextField();
+        enterFile = new Button("Enter");
+        enterFile.addEventHandler(ActionEvent.ACTION, new EventHandler(){
+            @Override
+            public void handle(Event event){
+                try {
+                    updateInventory(enterFile.getText());
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(WarehouseManagerFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
     @FXML
     void switchPartName(ActionEvent event) {
         clearAdded(ExaminePartPane);
