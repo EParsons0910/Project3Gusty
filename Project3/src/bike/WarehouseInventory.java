@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bike;
 
 import basicStuff.bikePart;
@@ -11,18 +6,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Iterator;
 
 /**
  *
  * @author Elizabeth Parsons
  */
-public class WarehouseInventory {
+public class WarehouseInventory implements Iterable {
     private List<WarehousePart> warehouseDB;
     
-    public WarehouseInventory(){
+    public WarehouseInventory() {
         warehouseDB = new ArrayList<WarehousePart>();
     }
     
@@ -104,5 +99,9 @@ public class WarehouseInventory {
             
             }
         }
-    
+
+    @Override
+    public Iterator<WarehousePart> iterator() {
+        return warehouseDB.iterator();
+    }
 }
