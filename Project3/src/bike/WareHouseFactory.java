@@ -7,67 +7,55 @@ package bike;
 
 import basicStuff.LoginAccount;
 import basicStuff.bikePart;
-import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
  *
  * @author Jackson Trahan
  */
-public class WareHouseFactory {
-    public static Warehouse getWarehouse(String warehouseName, WarehouseTypes type) {
-        if (type == WarehouseTypes.MAIN_WH) {
-            return new MainWarehouse(warehouseName);
-        } else {
-            return new SalesVanWarehouse(warehouseName);
+public class WarehouseFactory {
+    public static Warehouse getWarehouse(LoginAccount la) {
+        if (OfficeMan.class.isInstance(la)) {
+            return new MainWarehouse();
+        } else if (SalesAssociate.class.isInstance(la)) {
+            return new SalesVanWarehouse(la.username + la.password);
+        } else if (WarehouseManager.class.isInstance(la)) {
+            return new MainWarehouse();
         }
+        return null;
     }
 }
 
 abstract class Warehouse {
     String filename;
+    public WarehouseInventory whDb;
     
-    public abstract boolean addPart(bikePart bp, int c);
+    public void addPart(bikePart bp, int c) {
+        whDb.addInventory(bp, c);
+        whDb.saveWarehouse(filename);
+    }
 }
 
 class MainWarehouse extends Warehouse {
-    WarehouseInventory mWhDB;
-    
-    public MainWarehouse(String filename) {
-        this.filename = filename;
-        mWhDB = new WarehouseInventory();
+    public MainWarehouse() {
+        this.filename = "MainWH.txt";
+        whDb = new WarehouseInventory();
         try {
-            mWhDB.updateWareHouseDB(filename);
+            whDb.updateWareHouseDB(filename);
         } catch (FileNotFoundException e) {
-            mWhDB.saveWarehouse(filename);
+            whDb.saveWarehouse(filename);
         }
-    }
-    
-    @Override
-    public boolean addPart(bikePart bp, int c) {
-        mWhDB.addInventory(bp, c);
-        mWhDB.saveWarehouse(this.filename);
-        return true;
     }
 }
 
 class SalesVanWarehouse extends Warehouse {
-    WarehouseInventory svWhDB;
-    
     public SalesVanWarehouse(String filename) {
         this.filename = filename;
-        svWhDB = new WarehouseInventory();
+        whDb = new WarehouseInventory();
         try {
-            svWhDB.updateWareHouseDB(filename);
+            whDb.updateWareHouseDB(filename);
         } catch (FileNotFoundException e) {
-            svWhDB.saveWarehouse(filename);
+            whDb.saveWarehouse(filename);
         }
-    }
-        
-    @Override
-    public boolean addPart(bikePart bp, int c) {
-        svWhDB.addInventory(bp, c);
-        svWhDB.saveWarehouse(filename);
-        return true;
     }
 }
