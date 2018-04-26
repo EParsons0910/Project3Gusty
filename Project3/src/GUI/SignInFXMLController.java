@@ -37,6 +37,7 @@ public class SignInFXMLController implements Initializable {
     private void signIn(ActionEvent event) throws Exception {
         BikeDB db = BikeDB.getDB();
         for (LoginAccount user : db.getUsers()) {
+            System.out.println(username.getText() + user.username);
             if (user.validate(username.getText(), password.getText())) {
                 Parent root = null;
                 if (OfficeMan.class.isInstance(user)) {
