@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="650.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="650.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
   <tabs>
     <Tab text="Examine Part">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane fx:id="ExaminePartPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <MenuButton layoutX="50.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Select an Option:">
+                  <MenuButton fx:id="optionbutton" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Select an Option:">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Enter Part Name" />
-                        <MenuItem mnemonicParsing="false" text="Enter Part Number" />
-                        <MenuItem mnemonicParsing="false" text="Enter Part Quantity" />
+                        <MenuItem fx:id="loadPartNameItem" mnemonicParsing="false" onAction="#switchPartName" text="Enter Part Name" />
+                        <MenuItem fx:id="loadPartNumItem" mnemonicParsing="false" onAction="#switchPartNum" text="Enter Part Number" />
+                        <MenuItem fx:id="loadPartQuantity" mnemonicParsing="false" onAction="#switchPartQuantity" text="Enter Part Quantity" />
                      </items>
                   </MenuButton>
-                  <ListView layoutX="300.0" layoutY="50.0" prefHeight="150.0" prefWidth="300.0" />
+                  <ListView fx:id="listView" layoutX="300.0" layoutY="50.0" prefHeight="150.0" prefWidth="300.0" />
                </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="Update Inventory">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane fx:id="updatePartPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="transferEnter" layoutX="78.0" layoutY="100.0" onAction="#checkFile" text="Enter in Transfer File" />
+                  <Button fx:id="enterFile" layoutX="255.0" layoutY="100.0" mnemonicParsing="false" onAction="#checkFile" text="Enter" />
+               </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Log Out" />
+      <Tab fx:id="logOutButton" text="Log Out" />
   </tabs>
 </TabPane>

@@ -1,9 +1,13 @@
 import bike.BikeDB;
-import bike.OfficeMan;
+import bike.WarehouseManager;
+import bike.WarehouseManager;
 import bike.WarehousePart;
+import bike.WarehouseFactory;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -43,6 +47,12 @@ public class WarehouseManagerFXMLController {
 
     @FXML
     private AnchorPane updatePartPane;
+    
+    @FXML
+    private Button enterFile;
+
+    @FXML
+    private TextField transferEnter;
 
     @FXML
     private ListView listView;
@@ -143,7 +153,7 @@ public class WarehouseManagerFXMLController {
     }
     private void searchByName(String name) {
         BikeDB db = BikeDB.getDB();
-        OfficeMan user = (OfficeMan)(db.getUser());
+        WarehouseManager user = (WarehouseManager)(db.getUser());
         WarehousePart[] parts = user.getPartsByName(name);
         ObservableList<WarehousePart> list = FXCollections.observableArrayList(parts);
         listView.setItems(list);
@@ -151,7 +161,7 @@ public class WarehouseManagerFXMLController {
     
     private void searchByNum(String num) {
         BikeDB db = BikeDB.getDB();
-        OfficeMan user = (OfficeMan)(db.getUser());
+        WarehouseManager user = (WarehouseManager)(db.getUser());
         WarehousePart[] parts = user.getPartsByNum(num);
         ObservableList<WarehousePart> list = FXCollections.observableArrayList(parts);
         listView.setItems(list);
@@ -172,6 +182,14 @@ public class WarehouseManagerFXMLController {
             }
         );
     }
+    
+    private void updateInventory(String fileName) throws FileNotFoundException{
+        BikeDB db = BikeDB.getDB();
+        WarehouseManager user = (WarehouseManager)(db.getUser());
+        Scanner scnr = new Scanner(System.in);
+        fileName = scnr.nextLine();
+        user.updateInventory(fileName);
+    }
     private void addTo(AnchorPane ap, Node... args) {
         for (Node n : args) {
             added.add(n);
@@ -186,5 +204,3 @@ public class WarehouseManagerFXMLController {
         added.clear();
     }
     }
-
-}
