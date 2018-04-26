@@ -1,3 +1,7 @@
+import bike.BikeDB;
+import bike.SalesAssociate;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -25,4 +29,11 @@ public class SalesAssociateFXMLController {
     @FXML
     private Tab logOutTab;
 
+    private void loadSalesVan(String fileName) throws FileNotFoundException{
+        BikeDB bike = BikeDB.getDB();
+        SalesAssociate user = (SalesAssociate)(bike.getUser());
+        Scanner scnr = new Scanner(System.in);
+        fileName = scnr.nextLine();
+        
+    }
 }
